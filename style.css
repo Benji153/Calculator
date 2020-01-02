@@ -35,8 +35,18 @@ button:hover{
 #display{
     background-color: rgb(180, 193, 193);
     border: 3px solid rgb(145, 145, 145);
-    text-align: right;
+    display: flex;
     width: 80%;
     height: 50%;
     margin: auto;
+    
+}
+#display p{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 100%;
+    text-align: right;
+    font-family: "Courier New";
 }
