@@ -11,7 +11,7 @@ numButtons.forEach((button) => {
             equation = equation + e.target.value;
             updateDisplay(equation);
         } else {
-            if (Number.isInteger(parseInt(equation.charAt(equation.length - 1))) || equation == "") {
+            if (Number.isInteger(parseInt(equation.charAt(equation.length - 1))) || equation == "" || equation.charAt(equation.length - 1) == ")"){
                 equation = equation + e.target.value;
                 updateDisplay(equation);
             }
