@@ -7,12 +7,12 @@ var b;
 var numButtons = document.querySelectorAll(".numButton");
 numButtons.forEach((button) => {
     button.addEventListener('click', function (e) {
-        if (Number.isInteger(parseInt(e.target.value))) {
+        if (Number.isInteger(parseInt(e.target.value)) || e.target.value == ".") {
             equation = equation + e.target.value;
             updateDisplay(equation);
         } else {
-            if (Number.isInteger(parseInt(equation.charAt(equation.length - 1))) || equation == "" || equation.charAt(equation.length - 1) == ")"){
-                equation = equation + e.target.value;
+            if (Number.isInteger(parseInt(equation.charAt(equation.length - 1))) || equation == "" && e.target.value == "(" || equation.charAt(equation.length - 2) == ")"){
+                equation = equation + " " + e.target.value + " ";
                 updateDisplay(equation);
             }
         }
@@ -85,7 +85,7 @@ function convertPostfix(expression) {
             oldI = i;
             while (flag) {
 
-                if (Number.isInteger(parseInt(expression.charAt(i + 1)))) {
+                if (Number.isInteger(parseInt(expression.charAt(i + 1))) || expression.charAt(i+1) == ".") {
                     i = i + 1;
                 } else {
                     newExpression = newExpression + expression.substring(oldI, i + 1) + " ";
@@ -139,8 +139,8 @@ function evaluatePostfix(expression) {
         if (Number.isInteger(parseInt(expression[i]))) {
             stack.push(expression.slice(i,i+1)[0]);
         } else if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/") {
-            let a = parseInt(stack.pop());
-            let b = parseInt(stack.pop());
+            let a = parseFloat(stack.pop());
+            let b = parseFloat(stack.pop());
             stack.push(operate(expression[i],a,b));
         }
     }
